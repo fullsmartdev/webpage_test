@@ -235,6 +235,14 @@ describe('Dry Run', function() {
       });
     });
 
+    it('gets history request', function(done) {
+      wpt.getHistory(2, {dryRun: true}, function (err, data) {
+        if (err) return done(err);
+        assert.equal(data.url, wptServer + 'testlog.php?all=on&f=csv&days=2');
+        done();
+      });
+    });
+
     it('gets a waterfall image request', function(done) {
       wpt.getWaterfallImage('120816_V2_2', {dryRun: true}, function (err, data) {
         if (err) return done(err);
@@ -356,20 +364,5 @@ describe('Dry Run', function() {
       });
     });
 
-    it('create a video', function (done) {
-      wpt.createVideo('130416_YS_KD4-r:3-c:1,130416_W6_KEE-r:8-c:1', {dryRun: true}, function (err, data) {
-        if (err) throw err;
-        assert.equal(data.url, wptServer + 'video/create.php?tests=130416_YS_KD4-r%3A3-c%3A1%2C130416_W6_KEE-r%3A8-c%3A1&f=json&end=visual');
-        done();
-      });
-    });
-
-    it('get the url of an embedded video', function (done) {
-      wpt.getEmbedVideoPlayer('130416_36ed6e37013655a14b2b857cdccec99db72adcaa', {dryRun: true}, function (err, data) {
-        if (err) throw err;
-        assert.equal(data.url, wptServer + 'video/view.php?embed=1&id=130416_36ed6e37013655a14b2b857cdccec99db72adcaa');
-        done();
-      });
-    });
   });
 });

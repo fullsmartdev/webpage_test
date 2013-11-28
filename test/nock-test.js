@@ -192,6 +192,14 @@ describe('Example WebPageTest', function() {
       });
     });
 
+    it('gets history request then returns the history object', function(done) {
+      wpt.getHistory(2, function (err, data) {
+        if (err) return done(err);
+        assert.deepEqual(data, ResponseObjects.history);
+        done();
+      });
+    });
+
     it('gets a waterfall image request then returns the waterfall data URI string', function(done) {
       wpt.getWaterfallImage('120816_V2_2', {dataURI: true}, function (err, data, info) {
         if (err) return done(err);
@@ -242,22 +250,6 @@ describe('Example WebPageTest', function() {
         if (err) return done(err);
         assert.equal(data, ResponseObjects.screenshotFullResolution);
         assert.deepEqual(info, {type: 'image/png', encoding: 'utf8'});
-        done();
-      });
-    });
-
-    it('creates a video', function (done) {
-      wpt.createVideo('130416_YS_KD4-r:3-c:1,130416_W6_KEE-r:8-c:1', {}, function (err, data) {
-        if (err) throw err;
-        assert.deepEqual(data, ResponseObjects.createVideo);
-        done();
-      });
-    });
-
-    it('get the url of an embedded video', function (done){
-      wpt.getEmbedVideoPlayer('130416_36ed6e37013655a14b2b857cdccec99db72adcaa', {}, function (err, data) {
-        if (err) throw err;
-        assert.equal(data, ResponseObjects.embeddedVideoPlayer + "\n");
         done();
       });
     });

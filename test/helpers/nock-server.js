@@ -25,6 +25,7 @@ var reqResMap = {
   '/getgzip.php?test=120816_V2_2&file=1_netlog.txt': 'netLog.txt',
   '/getgzip.php?test=120816_V2_2&file=1_console_log.json': 'consoleLog.json',
   '/getgzip.php?test=120816_V2_2&file=testinfo.json': 'testInfo.json',
+  '/testlog.php?all=on&f=csv&days=2': 'history.csv',
   '/waterfall.php?test=120816_V2_2&run=1&cached=0': 'waterfall.png',
   '/thumbnail.php?test=120816_V2_2&run=1&cached=0&file=1_waterfall.png': 'waterfallThumbnail.png',
   '/getgzip.php?test=120816_V2_2&file=1_screen.jpg': 'screenshot.jpg',
@@ -32,8 +33,6 @@ var reqResMap = {
   '/getgzip.php?test=120816_V2_2&file=1_screen.png': 'screenshotFullResolution.png',
   '/cancelTest.php?test=120816_V2_2': 'cancel.html',
   '/cancelTest.php?test=120816_V2_3': 'cancelNotCancelled.html',
-  '/video/create.php?tests=130416_YS_KD4-r%3A3-c%3A1%2C130416_W6_KEE-r%3A8-c%3A1&f=json&end=visual': 'createVideo.json',
-  '/video/view.php?embed=1&id=130416_36ed6e37013655a14b2b857cdccec99db72adcaa': 'embeddedVideoPlayer.html',
 
   // test results for multi runs with/without custom median metric
   '/xmlResult.php?test=130619_KK_6A2': 'testResultsMultiRunsDefaultMedianMetric.xml',

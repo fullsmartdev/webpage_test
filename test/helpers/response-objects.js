@@ -9,7 +9,7 @@ var fs = require('fs'),
 
 var PATH_OBJECTS = path.join(__dirname, '../fixtures/objects');
 
-var reExtensions = /^\.(?:json|txt|html)$/i,
+var reExtensions = /^\.(?:json|txt)$/i,
     reJSONExt = /^\.json$/i,
     reEOFNewLine = /\s+$/;
 
