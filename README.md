@@ -123,7 +123,9 @@ _The default WPT server can also be specified via environment variable `WEBPAGET
 * **-A, --medianvideo**: store the video from the median run when capturing video is enabled
 * **--htmlbody**: save the content of only the base HTML response
 * **--tsview** _\<id\>_: test name to use when submitting results to tsviewdb (for private instances that have integrated with tsviewdb)
+* **--tsviewconfigs** _\<string\>_: configs to use when submitting results to tsviewdb (for private instances that have integrated with tsviewdb)
 * **--affinity** _\<string\>_: string to hash test to a specific test agent. tester will be picked by index among available testers
+* **--priority** _\<number\>_: change test priority (0-9) [enforced by API key, otherwise 5]
 * **--noads**: block ads defined by adblockrules.org
 * **--continuous**: capture video continuously (unstable/experimental, may cause tests to fail)
 * **--spdy3**: force SPDY version 3 (Chrome only)
@@ -133,7 +135,7 @@ _The default WPT server can also be specified via environment variable `WEBPAGET
 * **--timeout** _\<seconds\>_: timeout for polling and waiting results [no timeout]
 
 #### API Key (works for **test** and **cancel** commands)
-* **-k, --key** _\<api_key\>_:API key (if assigned). Contact the WebPageTest server administrator for a key if required
+* **-k, --key** _\<api_key\>_:API key (if assigned). Contact the WebPageTest server administrator for a key if required or request an API key for limited testing at [webpagetest.org/getkey.php](http://www.webpagetest.org/getkey.php)
 
 #### Request (works for **status**, **results**, **locations**, **testers** and **test** commands)
 * **-e, --request** _\<id\>_: echo request ID, useful to track asynchronous requests
@@ -446,7 +448,9 @@ wpt.runTest(script, function(err, data) {
 * **medianVideo**: _Boolean_, store the video from the median run when capturing video is enabled
 * **htmlBody**: _Boolean_, save the content of only the base HTML response
 * **tsView**: _String_, test name to use when submitting results to tsviewdb (for private instances that have integrated with tsviewdb)
+* **tsViewConfigs**: _String_, configs to use when submitting results to tsviewdb (for private instances that have integrated with tsviewdb)
 * **affinity**: _String_, string to hash test to a specific test agent. tester will be picked by index among available testers
+* **priority**: _Number_, change test priority (0-9) [enforced by API key, otherwise 5]
 * **blockAds**: _Boolean_, block ads defined by adblockrules.org
 * **continuousVideoCapture**: _Boolean_, capture video continuously (unstable/experimental, may cause tests to fail)
 * **forceSpdy3**: _Boolean_, force SPDY version 3 (Chrome only)
