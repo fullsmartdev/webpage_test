@@ -144,7 +144,6 @@ describe('Edge Cases of', function() {
     it('when getting a valid standard server uri returns server info object', function() {
       var server = helper.normalizeServer('example.com');
       assert.deepEqual(server, {
-        auth: null,
         protocol: 'http:',
         hostname: 'example.com',
         pathname: '/',
@@ -153,9 +152,8 @@ describe('Edge Cases of', function() {
     });
 
     it('when getting a valid full server uri returns server info object', function() {
-      var server = helper.normalizeServer('http://foo:bar@example.com:8000/foo');
+      var server = helper.normalizeServer('http://example.com:8000/foo');
       assert.deepEqual(server, {
-        auth: 'foo:bar',
         protocol: 'http:',
         hostname: 'example.com',
         pathname: '/foo',
@@ -166,7 +164,6 @@ describe('Edge Cases of', function() {
     it('when getting a https server uri returns server info object', function() {
       var server = helper.normalizeServer('https://example.com');
       assert.deepEqual(server, {
-        auth: null,
         protocol: 'https:',
         hostname: 'example.com',
         pathname: '/',
