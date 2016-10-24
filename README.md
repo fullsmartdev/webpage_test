@@ -1,9 +1,9 @@
 ## WebPageTest API Wrapper for NodeJS
 
-[![Build Status](https://secure.travis-ci.org/marcelduran/webpagetest-api.svg?branch=master)](https://travis-ci.org/marcelduran/webpagetest-api)
+[![Build Status](https://secure.travis-ci.org/marcelduran/webpagetest-api.png?branch=master)](https://travis-ci.org/marcelduran/webpagetest-api)
 [![NPM Version](https://img.shields.io/npm/v/webpagetest.svg?style=flat)](https://www.npmjs.org/package/webpagetest)
 [![NPM Downloads](https://img.shields.io/npm/dm/webpagetest.svg?style=flat)](https://www.npmjs.org/package/webpagetest)
-[![Dependencies Status](https://david-dm.org/marcelduran/webpagetest-api.svg)](https://david-dm.org/marcelduran/webpagetest-api)
+[![Dependencies Status](https://david-dm.org/marcelduran/webpagetest-api.png)](https://david-dm.org/marcelduran/webpagetest-api)
 
 [WebPageTest API Wrapper](https://marcelduran.com/webpagetest-api) is a [NPM](https://npmjs.org) package that wraps [WebPageTest](https://github.com/WPO-Foundation/webpagetest) API for [NodeJS](https://nodejs.org) as a module and a command-line tool.
 
@@ -22,10 +22,10 @@ $ webpagetest test https://twitter.com/marcelduran
 
 ### Module
 ```javascript
-const WebPageTest = require('webpagetest');
-const wpt = new WebPageTest('www.webpagetest.org');
+var WebPageTest = require('webpagetest');
+var wpt = new WebPageTest('www.webpagetest.org');
 
-wpt.runTest('https://twitter.com/marcelduran', (err, data) => {
+wpt.runTest('https://twitter.com/marcelduran', function(err, data) {
   console.log(err || data);
 });
 ```
@@ -70,7 +70,7 @@ $ webpagetest --help
 ### Options
 
 #### Common (works for all commands)
-* **-s, --server** _\<server\>_: the WPT server URL [http://www.webpagetest.org]
+* **-s, --server** _\<server\>_: the WPT server URL [https://www.webpagetest.org]
 * **-d, --dryrun**: just return the RESTful API URL
 * **-o, --out** _\<file\>_: place the output into \<file\>. Defaults to stdout
 
@@ -78,7 +78,7 @@ _The default WPT server can also be specified via environment variable `WEBPAGET
 
 #### Test (works for **test** command only)
 * **-l, --location** _\<location\>_: location to test from
-* **-y, --connectivity** _\<profile\>_: connectivity profile (Cable|DSL|FIOS|Dial|3G|3GFast|Native|custom) [Cable]
+* **-y, --connectivity** _\<profile\>_: connectivity profile -- requires location to be specified -- (Cable|DSL|FIOS|Dial|3G|3GFast|Native|custom) [Cable]
 * **-r, --runs** _\<number\>_: number of test runs [1]
 * **-f, --first**: skip the Repeat View test
 * **-v, --video**: capture video
@@ -362,7 +362,7 @@ Methods and options (including the one letter shorthands) are the same when usin
 ### Parameters
 * **id**: test ID string _required_
 * **options**: parameters object _optional_, see below
-* **callback**: the callback `(error, data)` _optional=> _
+* **callback**: the callback `function(error, data)` _optional_
 * **url_or_script**: decoded url or script string _required_
 * **port**: port number _optional_ \[default: 7791\]
 * **script**: script array in the format:
@@ -383,7 +383,7 @@ Methods and options (including the one letter shorthands) are the same when usin
 * `scriptToString` script array values 1-N are optional. e.g:
 
 ```javascript
-const script = wpt.scriptToString([
+var script = wpt.scriptToString([
   {logData: 0},
   {navigate: 'http://foo.com/login'},
   {logData: 1},
@@ -392,8 +392,7 @@ const script = wpt.scriptToString([
   {submitForm: 'action=http://foo.com/main'},
   'waitForComplete'
 ]);
-
-wpt.runTest(script, (err, data) => {
+wpt.runTest(script, function(err, data) {
   console.log(err || data);
 });
 ```
@@ -405,7 +404,7 @@ wpt.runTest(script, (err, data) => {
 
 #### Test (works for `runTest` method only)
 * **location**: _String_, location to test from
-* **connectivity**: _String_, connectivity profile (Cable|DSL|FIOS|Dial|3G|3GFast|Native|custom) [Cable]
+* **connectivity**: _String_, connectivity profile -- requires location to be specified -- (Cable|DSL|FIOS|Dial|3G|3GFast|Native|custom) [Cable]
 * **runs**: _Number_, number of test runs [1]
 * **firstViewOnly**: _Boolean_, skip the Repeat View test
 * **video**: _Boolean_, capture video
@@ -515,36 +514,36 @@ wpt.runTest(script, (err, data) => {
 
 #### 1. Instantiating
 ```javascript
-const WebPageTest = require('webpagetest');
+var WebPageTest = require('webpagetest');
 
-const wpt = new WebPageTest('my-wpt.foo.com'); // default: www.webpagetest.org
-const wptPublic = new WebPageTest('www.webpagetest.org', 'MY_API_KEY');
+var wpt = new WebPageTest('my-wpt.foo.com'); // default: www.webpagetest.org
+var wptPublic = new WebPageTest('www.webpagetest.org', 'MY_API_KEY');
 ```
 
 #### 2. Get available locations
 ```javascript
-wpt.getLocations((err, data) => {
+wpt.getLocations(function(err, data) {
   console.log(err || data);
 });
 ```
 
 #### 3. Run test on https://twitter.com/marcelduran from San Jose on IE9
 ```javascript
-wpt.runTest('https://twitter.com/marcelduran', {location: 'SanJose_IE9'}, (err, data) => {
+wpt.runTest('https://twitter.com/marcelduran', {location: 'SanJose_IE9'}, function(err, data) {
   console.log(err || data);
 });
 ```
 
 #### 4. Check current test status
 ```javascript
-wpt.getTestStatus('121025_PT_N8K', (err, data) => {
+wpt.getTestStatus('121025_PT_N8K', function(err, data) {
   console.log(err || data);
 });
 ```
 
 #### 5. Get test results
 ```javascript
-wpt.getTestResults('121025_PT_N8K', (err, data) => {
+wpt.getTestResults('121025_PT_N8K', function(err, data) {
   console.log(err || data);
 });
 ```
@@ -555,21 +554,21 @@ wpt.getWaterfallImage('121025_PT_N8K', {
   thumbnail: true,
   repeatView: true,
   dataURI: true
-}, (err, data, info) => {
+}, function(err, data, info) {
   console.log(err || data, info);
 });
 ```
 
 #### Run test on https://twitter.com/marcelduran and poll results every 5 seconds timing out in 60 seconds
 ```javascript
-wpt.runTest('https://twitter.com/marcelduran', {pollResults: 5, timeout: 60}, (err, data) => {
+wpt.runTest('https://twitter.com/marcelduran', {pollResults: 5, timeout: 60}, function(err, data) {
   console.log(err || data);
 });
 ```
 
 #### Or run test on https://twitter.com/marcelduran and wait results listening on localhost\* port 8000\*\*
 ```javascript
-wpt.runTest('https://twitter.com/marcelduran', {waitResults: 'localhost:8000'}, (err, data) => {
+wpt.runTest('https://twitter.com/marcelduran', {waitResults: 'localhost:8000'}, function(err, data) {
   console.log(err || data);
 });
 ```
@@ -607,13 +606,13 @@ https://localhost:8443
 
 ### Module
 ```javascript
-const server = wpt.listen(8080, (err, data) => {
+var server = wpt.listen(8080, function(err, data) {
   if (err) throw err;
   console.log('listening on ' + data.url);
 }); // listen on port 8080 (optional), default port is 7791
 
-setTimeout(() => {
-  server.close(() => {
+setTimeout(function() {
+  server.close(function() {
     console.log('server closed');
   });
 }, 10000); // wait for 10s before stop listening
