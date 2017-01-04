@@ -217,7 +217,7 @@ function parseBatch(filename) {
 
 function batch(file) {
   var accErr = 0,
-      count = 0,
+      count = 2,
       originalFormatData = formatData,
       originalOutput = output;
 
@@ -246,7 +246,6 @@ function batch(file) {
   if (!cmds) {
     return;
   }
-  count = cmds.length;
   output = function(){};
 
   cmds.forEach(function(cmd, index) {
