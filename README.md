@@ -20,6 +20,16 @@ $ npm install webpagetest -g
 $ webpagetest test https://twitter.com/marcelduran
 ```
 
+### Docker
+#### Build
+```bash
+$ docker build -t webpagetest-api . 
+```
+#### Run
+```bash
+$ docker run -it --rm webpagetest-api -k YOURAPIKEY test https://twitter.com/marcelduran
+```
+
 ### Module
 ```javascript
 var WebPageTest = require('webpagetest');
@@ -453,7 +463,7 @@ wpt.runTest(script, function(err, data) {
 * **tsViewConfigs**: _String_, configs to use when submitting results to tsviewdb (for private instances that have integrated with tsviewdb)
 * **affinity**: _String_, string to hash test to a specific test agent. tester will be picked by index among available testers
 * **priority**: _Number_, change test priority (0-9) [enforced by API key, otherwise 5]
-* **blockAds**: _Boolean_, block ads defined by http://adblockplus.org
+* **blockAds**: _Boolean_, block ads defined by adblockrules.org
 * **continuousVideoCapture**: _Boolean_, capture video continuously (unstable/experimental, may cause tests to fail)
 * **forceSpdy3**: _Boolean_, force SPDY version 3 (Chrome only)
 * **forceSoftwareRendering**: _Boolean_, force software rendering, disable GPU acceleration (Chrome only)
